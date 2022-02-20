@@ -3,22 +3,21 @@ import React, { Component } from 'react';
 // import NameEditor from './Phonebook/NameEditor';
 // import ContactList from './Phonebook/ContactList';
 // import Filter from './Phonebook/Filter';
-// import { Container } from './Phonebook/PhoneBook.styled';
+import { Container } from './Phonebook/PhoneBook.styled';
 
 class App extends Component {
  
   render() {
     return (
       <>
-        <div>Hello</div>
-        {/* <Container>
-          <Toaster />
+        <Container>
+          {/* <Toaster /> */}
           <h1>Phonebook</h1>
-          <NameEditor />
+          {/* <NameEditor /> */}
           <h2>Contacts</h2>
-          <Filter />
-          <ContactList />
-        </Container> */}
+          {/* <Filter /> */}
+          {/* <ContactList /> */}
+        </Container>
       </>
     );
   }
