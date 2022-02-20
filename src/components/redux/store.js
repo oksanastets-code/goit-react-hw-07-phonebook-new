@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 // import { setupListeners } from '@reduxjs/toolkit/query';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import {
   FLUSH,
   REHYDRATE,
