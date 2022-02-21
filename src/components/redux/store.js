@@ -16,10 +16,9 @@ const middleware = [
     },
   }),
 ];
-
 export const store = configureStore({
   reducer: {
     phonebook: phonebookReducer,
   },
-    middleware,
+  middleware,
 });

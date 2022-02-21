@@ -1,11 +1,27 @@
 import toast from 'react-hot-toast';
-import { createReducer, combineReducers } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './phone-book-operations';
-import { changeFilter } from './phone-book-actions';
+import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+  // deleteContact,
+  changeFilter,
+  fetchContactsRequest,
+  fetchContactsSuccess,
+  fetchContactsError,
+} from './phone-book-actions';
+
+// import initialContacts from '../../Phonebook/contacts.json';
+
 const contacts = createReducer([],
+  // initialContacts,
   {
-    [fetchContacts.fulfilled]: (_, { payload }) => payload,
-    [addContact.fulfilled]: (state, { payload }) => { 
+    [fetchContactsSuccess]: (state, { payload }) => payload,
+    [addContactSuccess]: (state, { payload }) => { 
          if (state.find(contact => contact.nick === payload.nick)) {
         const notify = `${payload.nick} is already on list`;
         toast.error(notify);
@@ -15,22 +31,22 @@ const contacts = createReducer([],
       toast.success(`Contact ${payload.nick} added!`);
       return state;
     },
-    [deleteContact.fulfilled]: (state, {payload}) => state.filter(({ id }) => id !== payload),
+    [deleteContactSuccess]: (state, {payload}) => state.filter(({ id }) => id !== payload),
 })
 
 const filter = createReducer('', {
     [changeFilter]: (_, {payload})=> payload,
 })
 const loading = createReducer(false, {
-  [fetchContacts.pending]: () => true,
-  [fetchContacts.fulfilled]: () => false,
-  [fetchContacts.rejected]: () => false,
-  [addContact.pending]: () => true,
-  [addContact.fulfilled]: () => false,
-  [addContact.rejected]: () => false,
-  [deleteContact.pending]: () => true,
-  [deleteContact.fulfilled]: () => false,
-  [deleteContact.rejected]: () => false,
+  [fetchContactsRequest]: () => true,
+  [fetchContactsSuccess]: () => false,
+  [fetchContactsError]: () => false,
+  [addContactRequest]: () => true,
+  [addContactSuccess]: () => false,
+  [addContactError]: () => false,
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
  
 })
 export default combineReducers({

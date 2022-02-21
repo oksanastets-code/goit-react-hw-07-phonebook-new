@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  fetchContacts,
-  deleteContact,
-} from '../redux/PhoneBook/phone-book-operations';
+import { fetchContacts, deleteContact } from '../redux/PhoneBook/phone-book-operations';
 import { getFoundedContacts } from 'components/redux/PhoneBook/phone-book-selectors';
 import {
   ListWrapper,
@@ -19,30 +16,24 @@ export default function ContactList() {
   const dispatch = useDispatch();
 
   const onDeleteContact = id => dispatch(deleteContact(id));
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  useEffect(() => {dispatch(fetchContacts()) }, [dispatch])
   return (
-    <>
-      {contacts.length > 0 && (
-        <ListWrapper>
-          <List>
-            {contacts.map(({ id, nick, number }) => (
-              <ContactItem key={id}>
-                <ContactData>
-                  {nick}: {number}
-                </ContactData>
-                <DeleteButton onClick={() => onDeleteContact(id)}>
-                  Delete
-                </DeleteButton>
-              </ContactItem>
-            ))}
-          </List>
-        </ListWrapper>
-      )}
-    </>
-  );
-}
+    <ListWrapper>
+      <List>
+        {contacts.map(({ id, nick, number }) => (
+          <ContactItem key={id}>
+            <ContactData>
+              {nick}: {number}
+            </ContactData>
+            <DeleteButton onClick={() => onDeleteContact(id)}>
+              Delete
+            </DeleteButton>
+          </ContactItem>
+        ))}
+      </List>
+    </ListWrapper>
+  )
+};
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
