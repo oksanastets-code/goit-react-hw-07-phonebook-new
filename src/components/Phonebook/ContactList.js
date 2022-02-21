@@ -15,9 +15,9 @@ export default function ContactList() {
   const contacts = useSelector(state => getFoundedContacts(state));
   const dispatch = useDispatch();
 
-  // const onFetchContacts = () => dispatch(fetchContacts());
+  const onFetchContacts = () => dispatch(fetchContacts());
   const onDeleteContact = id => dispatch(deleteContact(id));
-  useEffect(() => {() => dispatch(fetchContacts() )}, [])
+  useEffect(() => {onFetchContacts()}, [])
   return (
     <ListWrapper>
       <List>
