@@ -18,9 +18,8 @@ import {
 // import initialContacts from '../../Phonebook/contacts.json';
 
 const contacts = createReducer([],
-  // initialContacts,
   {
-    [fetchContactsSuccess]: (state, { payload }) => payload,
+    [fetchContactsSuccess]: (_, { payload }) => payload,
     [addContactSuccess]: (state, { payload }) => { 
          if (state.find(contact => contact.nick === payload.nick)) {
         const notify = `${payload.nick} is already on list`;
